@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170801144342) do
+ActiveRecord::Schema.define(version: 20170803142135) do
+
+  create_table "admins", force: :cascade do |t|
+    t.string "email", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.text "text", null: false
@@ -20,11 +24,27 @@ ActiveRecord::Schema.define(version: 20170801144342) do
     t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
+  create_table "credentials", force: :cascade do |t|
+    t.string "password_digest", null: false
+    t.string "authorizable_type", null: false
+    t.integer "authorizable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["authorizable_type", "authorizable_id"], name: "index_credentials_on_authorizable_type_and_authorizable_id"
+  end
+
   create_table "posts", force: :cascade do |t|
     t.string "title", null: false
     t.text "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end

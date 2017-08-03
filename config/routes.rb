@@ -1,15 +1,8 @@
 Rails.application.routes.draw do
-  # GET /
-  root to: 'posts#index'
+  root to: 'authentications#new'
 
-  # GET /posts          #=> PostsController#index
-  # GET /posts/:id      #=> PostsController#show
-  # GET /posts/new      #=> PostsController#new
-  # POST /posts         #=> PostsController#create
-  # GET /posts/:id/edit #=> PostsController#edit
-  # PUT /posts/:id      #=> PostsController#update
-  # PATCH /posts/:id    #=> PostsController#update
-  # DELETE /posts/:id   #=> PostsController#destroy
+  resource :authentication, only: %i(new create)
+  resources :users, only: %i(new create)
   resources :posts do
     resources :comments
   end

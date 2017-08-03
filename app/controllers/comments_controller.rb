@@ -1,16 +1,14 @@
 class CommentsController < ApplicationController
-  helper_method :post
+  before_action :authenticate
 
   def index
     @comments = post.comments
   end
 
-  # GET /posts/:post_id/comments/new
   def new
     @comment = post.comments.new
   end
 
-  # POST /posts/:post_id/comments
   def create
     @comment = post.comments.create(comment_params)
 
@@ -23,7 +21,7 @@ class CommentsController < ApplicationController
 
   private
 
-  def post
+  helper_method def post
     @post ||= Post.find(params[:post_id])
   end
 

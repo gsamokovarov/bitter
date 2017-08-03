@@ -1,0 +1,19 @@
+<h1>Authentication</h1>
+
+<%= form_with(model: @user, url: authentication_path, local: true) do |form| %>
+  <%= render 'shared/errors', model: @user %>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :user_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.text_field :password, id: :user_password %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Login' %>
+  </div>
+<% end %>

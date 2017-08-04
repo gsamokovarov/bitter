@@ -7,7 +7,8 @@ class UsersController < ApplicationController
     @user = User.create_with_credentials(user_params)
     redirect_to root_path
   rescue ActiveRecord::RecordInvalid => err
-    render :new
+    @user = User.new
+    render :new, status: :unprocessable_entity
   end
 
   private

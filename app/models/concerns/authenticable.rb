@@ -12,7 +12,7 @@ module Authenticable
       password = attributes.delete(:password)
 
       transaction do
-        create(attributes) do |record|
+        create!(attributes) do |record|
           Credentials.create!(password: password, authorizable: record)
         end
       end

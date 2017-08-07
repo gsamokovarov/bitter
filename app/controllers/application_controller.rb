@@ -17,8 +17,4 @@ class ApplicationController < ActionController::Base
   def current_user=(user)
     cookies.signed[:user_id] = user.id
   end
-
-  def logout
-    cookies.signed[:user_id] = nil
-  end
 end

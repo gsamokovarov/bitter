@@ -1,4 +1,6 @@
 class Api::PostsController < Api::ApplicationController
+  before_action :authenticate
+
   def show
     respond_with post
   end
@@ -6,6 +8,6 @@ class Api::PostsController < Api::ApplicationController
   private
 
   def post
-    @post ||= Post.find(params[:id])
+    @post ||= current_user.posts.find(params[:id])
   end
 end

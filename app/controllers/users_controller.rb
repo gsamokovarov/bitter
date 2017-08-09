@@ -5,6 +5,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create_with_credentials(user_params)
+    UserMailer.welcome_mail(@user).deliver_later
+
     redirect_to root_path
   rescue ActiveRecord::RecordInvalid => err
     @user = User.new

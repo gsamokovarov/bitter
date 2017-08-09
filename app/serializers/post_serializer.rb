@@ -1,4 +1,4 @@
-class PostSerializer < ActiveModel::Serializer
+class PostSerializer < ApplicationSerializer
   attributes :title, :text
 
   def text

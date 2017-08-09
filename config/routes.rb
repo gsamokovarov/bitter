@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   root to: 'authentications#new'
 
   namespace :api, defaults: { format: :json } do
+    resource :authentication, only: %i(create)
+    resources :users, only: %i(create)
     resources :posts, only: :show
   end
 

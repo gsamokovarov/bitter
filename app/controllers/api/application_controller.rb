@@ -1,7 +1,9 @@
 class Api::ApplicationController < ActionController::API
-  use JWTMiddleware
+  include ErrorHandling
 
   respond_to :json
+
+  use JWTMiddleware
 
   def current_user
     @current_user ||= User.find_by(id: claims["sub"])

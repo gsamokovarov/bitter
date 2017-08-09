@@ -1,9 +1,4 @@
 class JWTMiddleware
-  cattr_accessor :secret
-
-  cattr_accessor :algorithm
-  self.algorithm = 'HS256'
-
   def initialize(app)
     @app = app
   end
@@ -12,8 +7,7 @@ class JWTMiddleware
     token = extract_token_from(env)
     return @app.call(env) if token.blank?
 
-    claims = decode_token(token)
-    env['jwt.token'] = claims
+    env['jwt.token'] = Token.decode(token)
 
     @app.call(env)
   rescue JWT::DecodeError
@@ -26,14 +20,11 @@ class JWTMiddleware
     env['HTTP_AUTHORIZATION'].to_s.match(/Bearer:\s?(.*)/) { |m| m[1] }
   end
 
-  def decode_token(token)
-    JWT.decode(token, secret, true, { algorithm: algorithm }).first
-  end
-
   def invalid?(token)
     return false if token.blank?
 
-    JWT.decode token, secret, true, { algorithm: algorithm }
+    # Test if the token is decodable.
+    Token.decode(token)
     false
   rescue JWT::DecodeError
     true

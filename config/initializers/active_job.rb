@@ -1,1 +1,7 @@
-Rails.configuration.active_job.queue_adapter = :delayed_job
+Rails.configuration.active_job.queue_adapter =
+  if Rails.env.test?
+    :test
+  else
+    :delayed_job
+  end
+

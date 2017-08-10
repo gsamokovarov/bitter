@@ -6,5 +6,7 @@ FactoryGirl.define do
     trait :trending do
       trending_at { Time.current }
     end
+
+    user
   end
 end

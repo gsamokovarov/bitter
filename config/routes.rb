@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     resource :authentication, only: %i(create)
     resources :users, only: %i(create)
-    resources :posts, only: :show
+    resources :posts, only: %i(index create show) do
+      resources :comments, only: :create
+    end
   end
 
   resource :authentication, only: %i(new create)

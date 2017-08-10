@@ -7,7 +7,7 @@ module ErrorHandling
     end
 
     rescue_from ActiveRecord::RecordNotFound do
-      render_error code: :not_found
+      render_error 404, code: :not_found
     end
   end
 

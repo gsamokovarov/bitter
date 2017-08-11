@@ -1,11 +1,11 @@
 # config valid only for current version of Capistrano
 lock "3.8.1"
 
-set :application, "bitters"
-set :repo_url, "https://github.com/gsamokovarov/bitters"
+set :application, "bitter"
+set :repo_url, "https://github.com/gsamokovarov/bitter"
 
 # Default deploy_to directory is /var/www/my_app_name
-set :deploy_to, "/bitters"
+set :deploy_to, "/bitter"
 
 # Default value for :pty is false
 # set :pty, true

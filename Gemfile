@@ -44,9 +44,6 @@ gem 'jwt'
 gem 'delayed_job_active_record'
 gem 'daemons'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -64,6 +61,11 @@ group :development do
   gem 'spring'
 
   gem 'foreman', require: false
+
+  # Use Capistrano for deployment
+  gem 'capistrano-rails'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rbenv'
 end
 
 group :test do
